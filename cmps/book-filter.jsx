@@ -27,12 +27,12 @@ export function BookFilter({ filterBy, onSetFilter }) {
     //     setFilterByToEdit((prevFilterBy) => ({ ...prevFilterBy, txt: value }))
     // }
 
-    // function handleMinPriceChange({ target }) {
+    // function handleMaxPriceChange({ target }) {
     //     const value = target.value
-    //     setFilterByToEdit((prevFilterBy) => ({ ...prevFilterBy, minPrice: value }))
+    //     setFilterByToEdit((prevFilterBy) => ({ ...prevFilterBy, maxPrice: value }))
     // }
 
-    const { txt, minPrice } = filterByToEdit
+    const { txt, maxPrice } = filterByToEdit
     return (
         <section className="book-filter">
             <h2>Filter Our Books</h2>
@@ -41,8 +41,8 @@ export function BookFilter({ filterBy, onSetFilter }) {
                 <label htmlFor="txt">Title:</label>
                 <input value={txt} onChange={handleChange} name="txt" id="txt" type="text" placeholder="By Title" />
 
-                <label htmlFor="minPrice">Min Price:</label>
-                <input value={minPrice} onChange={handleChange} type="number" name="minPrice" id="minPrice" placeholder="By Min Price" />
+                <label htmlFor="maxPrice">Max Price:</label>
+                <input value={maxPrice} onChange={handleChange} type="number" name="maxPrice" id="maxPrice" placeholder="By Max Price" />
 
                 <button>Filter Books</button>
             </form>

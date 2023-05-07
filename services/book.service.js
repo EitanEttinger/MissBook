@@ -115,8 +115,8 @@ function query(filterBy = {}) {
                 books = books.filter(book => regExp.test(book.title))
             }
 
-            if (filterBy.minPrice) {
-                books = books.filter(book => book.price >= filterBy.minPrice)
+            if (filterBy.maxPrice) {
+                books = books.filter(book => book.listPrice.amount <= filterBy.maxPrice)
             }
             return books
         })
@@ -144,7 +144,7 @@ function getEmptyBook(title = '', price = '',thumbnail = '' ) {
 }
 
 function getDefaultFilter() {
-    return { txt: '', minPrice: '' }
+    return { txt: '', maxPrice: '' }
 }
 
 function _createBooks() {
