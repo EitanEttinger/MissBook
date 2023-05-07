@@ -19,13 +19,13 @@ export function App() {
             <header className="app-header full main-layout">
                 <h1>React Book App</h1>
                 <nav className="app-nav">
-                    <a onClick={() => handlePageChange('home')} href="#">Home</a> |
+                    <a onClick={() => handlePageChange('home-page')} href="#">Home</a> |
                     <a onClick={() => handlePageChange('book')} href="#">Books</a> |
                     <a onClick={() => handlePageChange('about')} href="#">About</a>
                 </nav>
             </header>
             <main>
-                {page === 'home' && <Home />}
+                {page === 'home-page' && <HomePage />}
                 {page === 'about' && <About />}
                 {page === 'book' && <BookIndex />}
             </main>
