@@ -3,12 +3,15 @@ export function BookDetails({ book, onBack }) {
 
     return (
         <section className="book-details">
-            <h1>Book Title: {book.title}</h1>
-            <h5>Book Price: {book.price}</h5>
+            <h2>Book Title: {book.title}</h2>
+            <h3>Book Authors: {book.authors[0]}</h3>
+            <h4>Book Subtitle: {book.subtitle}</h4>
+            <h4>Book Price: {book.listPrice.amount} {book.listPrice.currencyCode}</h4>
+            <p>Book Description: {book.description}</p>
             <img src={book.thumbnail} alt={book.thumbnail} />
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fuga, velit reiciendis sed optio eum saepe! Aliquid necessitatibus atque est quasi unde odit voluptate! Vero, dolor sunt molestiae possimus labore suscipit?</p>
             <button onClick={onBack}>Back</button>
         </section>
     )
 
 }
+

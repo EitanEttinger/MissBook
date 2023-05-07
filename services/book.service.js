@@ -1,80 +1,8 @@
 import { utilService } from './util.service.js'
 import { storageService } from './async-storage.service.js'
 
-const BOOK_KEY = 'bookDB'
-_createBooks()
-
-export const bookService = {
-    query,
-    get,
-    remove,
-    save,
-    getEmptyBook,
-    getDefaultFilter,
-}
-
-function query(filterBy = {}) {
-    console.log('filterBy service:', filterBy)
-    return storageService.query(BOOK_KEY)
-        .then(books => {
-            if (filterBy.txt) {
-                const regExp = new RegExp(filterBy.txt, 'i')
-                books = books.filter(book => regExp.test(book.title))
-            }
-
-            if (filterBy.minPrice) {
-                books = books.filter(book => book.price >= filterBy.minPrice)
-            }
-            return books
-        })
-}
-
-function get(bookId) {
-    return storageService.get(BOOK_KEY, bookId)
-    // return axios.get(BOOK_KEY, bookId)
-}
-
-function remove(bookId) {
-    return storageService.remove(BOOK_KEY, bookId)
-}
-
-function save(book) {
-    if (book.id) {
-        return storageService.put(BOOK_KEY, book)
-    } else {
-        return storageService.post(BOOK_KEY, book)
-    }
-}
-
-function getEmptyBook(title = '', price = '',thumbnail = '' ) {
-    return { id: '', title, price, thumbnail }
-}
-
-function getDefaultFilter() {
-    return { txt: '', minPrice: '' }
-}
-
-function _createBooks() {
-    let books = utilService.loadFromStorage(BOOK_KEY)
-    if (!books || !books.length) {
-        books = []
-        books.push(_createBook('metus hendrerit', 109, 'http://coding-academy.org/books-photos/20.jpg'))
-        books.push(_createBook('morbi', 44, 'http://coding-academy.org/books-photos/14.jpg'))
-        books.push(_createBook('at viverra venenatis', 108, 'http://coding-academy.org/books-photos/2.jpg'))
-        books.push(_createBook('dictum', 30, 'http://coding-academy.org/books-photos/16.jpg'))
-        utilService.saveToStorage(BOOK_KEY, books)
-    }
-}
-
-function _createBook(title, price = 250, thumbnail = 'http://coding-academy.org/books-photos/1.jpg') {
-    const book = getEmptyBook(title, price, thumbnail)
-    book.id = utilService.makeId()
-    return book
-}
-
 // JSON
-
-const hardCoded = [
+const booksDemoData = [
     {
       "id": "OXeMG8wNskc",
       "title": "metus hendrerit",
@@ -164,3 +92,93 @@ const hardCoded = [
       }
     },
 ]
+
+
+const BOOK_KEY = 'bookDB'
+_createBooks()
+
+export const bookService = {
+    query,
+    get,
+    remove,
+    save,
+    getEmptyBook,
+    getDefaultFilter,
+}
+
+function query(filterBy = {}) {
+    console.log('filterBy service:', filterBy)
+    return storageService.query(BOOK_KEY)
+        .then(books => {
+            if (filterBy.txt) {
+                const regExp = new RegExp(filterBy.txt, 'i')
+                books = books.filter(book => regExp.test(book.title))
+            }
+
+            if (filterBy.minPrice) {
+                books = books.filter(book => book.price >= filterBy.minPrice)
+            }
+            return books
+        })
+}
+
+function get(bookId) {
+    return storageService.get(BOOK_KEY, bookId)
+    // return axios.get(BOOK_KEY, bookId)
+}
+
+function remove(bookId) {
+    return storageService.remove(BOOK_KEY, bookId)
+}
+
+function save(book) {
+    if (book.id) {
+        return storageService.put(BOOK_KEY, book)
+    } else {
+        return storageService.post(BOOK_KEY, book)
+    }
+}
+
+function getEmptyBook(title = '', price = '',thumbnail = '' ) {
+    return { id: '', title, price, thumbnail }
+}
+
+function getDefaultFilter() {
+    return { txt: '', minPrice: '' }
+}
+
+function _createBooks() {
+    let books = utilService.loadFromStorage(BOOK_KEY)
+    if (!books || !books.length) {
+        // books = []
+        // books.push(_createBook('metus hendrerit', 109, 'http://coding-academy.org/books-photos/20.jpg'))
+        // books.push(_createBook('morbi', 44, 'http://coding-academy.org/books-photos/14.jpg'))
+        // books.push(_createBook('at viverra venenatis', 108, 'http://coding-academy.org/books-photos/2.jpg'))
+        // books.push(_createBook('dictum', 30, 'http://coding-academy.org/books-photos/16.jpg'))
+
+        books = booksDemoData.map(bookDemoData => {
+            return {
+                id: bookDemoData.id,
+                title: bookDemoData.title,
+                subtitle: bookDemoData.subtitle,
+                authors: bookDemoData.authors,
+                publishedDate: bookDemoData.publishedDate,
+                description: bookDemoData.description,
+                pageCount: bookDemoData.pageCount,
+                categories: bookDemoData.categories,
+                thumbnail: bookDemoData.thumbnail,
+                language: bookDemoData.language,
+                listPrice: bookDemoData.listPrice,
+            }
+        })
+
+
+        utilService.saveToStorage(BOOK_KEY, books)
+    }
+}
+
+function _createBook(title, price = 250, thumbnail = 'http://coding-academy.org/books-photos/1.jpg') {
+    const book = getEmptyBook(title, price, thumbnail)
+    book.id = utilService.makeId()
+    return book
+}
