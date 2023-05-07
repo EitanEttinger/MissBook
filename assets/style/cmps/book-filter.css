@@ -1,8 +1,14 @@
 .book-filter {
     background-color: var(--clr2bg);
+    padding-inline-start: 33px;
 }
 
 .book-filter form {
     display: grid;
     grid-template-columns: 100px 200px;
+}
+
+.book-filter button {
+    border: 3px solid black;
+    border-radius: 20px;
 }

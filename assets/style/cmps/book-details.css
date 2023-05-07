@@ -2,6 +2,10 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+
+    padding-inline-start: 33px;
+
+    background-color: var(--clr1bg);
 }
 .book-details h1 {
     color: var(--clr1);
@@ -15,4 +19,20 @@
     max-width: 200px;
     display: block;
     margin: auto;
+}
+
+.book-details .txt-red {
+    color: red;
+    background-color: aliceblue;
+}
+
+.book-details .txt-green {
+    color: green;
+    background-color: aliceblue;
+}
+
+.book-details .txt-vintage {
+    color: #2b0000;
+    background-color: aliceblue;
+    font-weight: 600;
 }

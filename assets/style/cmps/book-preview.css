@@ -14,3 +14,14 @@
 .book-preview img {
     max-width: 100px;
 }
+
+.book-preview .txt-red {
+    color: red;
+    background-color: aliceblue;
+}
+
+.book-preview .txt-green {
+    color: green;
+    background-color: aliceblue;
+
+}
