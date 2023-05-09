@@ -491,8 +491,8 @@ function save(book) {
     }
 }
 
-function getEmptyBook(title = '', price = '',thumbnail = '' ) {
-    return { id: '', title, price, thumbnail }
+function getEmptyBook(title = '', price = '',thumbnail = '../assets/BooksImages/EitanEttinger.jpg', subtitle = 'Sababa', authors = [ 'Eitan Ettinger' ], publishedDate = 1988, description = 'Yalla', pageCount = 33, categories = [ "Computers", "Hack" ], language = 'he', listPrice = { "amount": 33, "currencyCode": "ILS", "isOnSale": true } ) {
+    return { id: '', title, price, thumbnail, subtitle, authors, publishedDate, description, pageCount, categories, language, listPrice }
 }
 
 function getDefaultFilter() {
